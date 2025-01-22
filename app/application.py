@@ -7,5 +7,4 @@ class Application:
     def __init__(self, driver):
         self.driver = driver
         self.base_page = BasePage(driver)
-        self.left_side_menu = Left(driver)
         self.main_page = MainPage (driver)

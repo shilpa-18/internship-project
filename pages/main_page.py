@@ -1,5 +1,7 @@
 from pages.base_page import BasePage
-
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class MainPage(BasePage):
 
@@ -23,10 +25,16 @@ class MainPage(BasePage):
         self.click(MainPage.APPLY_FILTER_BUTTON)
 
     def verify_prices_in_range(self, lower_price, higher_price):
-        lower_range = 120000
-        higher_range = 200000
-        for card in range(lower_range, higher_range):
-            if lower_price <= card <= higher_price:
-                then
+        PRICE_CARD = (By.CSS_SELECTOR, '[div[wized="unitPriceMLS"]')
+        prices = self.driver.find_elements(*PRICE_CARD)
+
+        for price_card in prices:
+            price_text = price_card.text.replace(',', '').replace('$', '').strip()
+            price = float(price_text)
+
+            if not (lower_price <= price <= higher_price):
+                raise AssertionError(f"Price {price} is not within the range {lower_price} - {higher_price}")
+
+        print(f"All prices are within the range {lower_price} - {higher_price}")
 
 

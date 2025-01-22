@@ -7,6 +7,11 @@ def open_main_page(context):
     context.app.main_page.open_main_page()
     sleep(5)
 
+@then('Input {email} and {password} to Login to the page')
+def login_credentials(context, email, password):
+    sleep(10)
+    context.app.main_page.login_credentials(email, password)
+
 @when('Open “Secondary” option at the left side menu')
 def open_secondary(context):
     context.app.main_page.left_side_menu()

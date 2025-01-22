@@ -4,7 +4,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 class MainPage(BasePage):
-
+    EMAIL_FIELD = (By.CSS_SELECTOR, "[type='email']")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "[data-name='Password']")
+    CONTINUE_BUTTON = (By.CSS_SELECTOR, "[wized='loginButton']")
     SECONDARY_TAB = (By.ID,"w-node-_99a5c496-8f77-9959-16dd-e8eb9b22b697-9b22b68b")
     SECONDARY_PAGE = (By.ID, "w-node-bf44e609-bef9-12ba-bb17-9e5d5d1e09d4-7f66df43")
     FILTER_BUTTON = (By.XPATH, "//div[wized='openFiltersWindow']")
@@ -13,6 +15,11 @@ class MainPage(BasePage):
 
     def open_main_page(self):
         self.open_url('https://soft.reelly.io')
+
+    def login_credentials(self, username, password):
+        self.input_text(username, *self.EMAIL_FIELD)
+        self.input_text(password, *self.PASSWORD_FIELD)
+        self.click(*self.CONTINUE_BUTTON)
 
     def left_side_menu(self):
         self.click(MainPage.SECONDARY_TAB)

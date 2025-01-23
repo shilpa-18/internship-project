@@ -9,8 +9,8 @@ def open_main_page(context):
 
 @then('Input {email} and {password} to Login to the page')
 def login_credentials(context, email, password):
-    sleep(10)
     context.app.main_page.login_credentials(email, password)
+
 
 @when('Open “Secondary” option at the left side menu')
 def open_secondary(context):
@@ -22,12 +22,19 @@ def correct_page(context):
     context.app.main_page.correct_page()
     sleep(5)
 
-@then('Open "Filters" and input the {lower_price} and {higher_price}')
-def open_filters(context, lower_price, higher_price):
-    context.app.main_page.open_filters(int(lower_price), int(higher_price))
+@then('Click on "Filters" at the top of the page')
+def filters(context):
+    context.app.main_page.filters()
     sleep(5)
 
+@then('Filter the products by price range from {lower_amount} to {higher_amount} AED')
+def filter_by_price(context, lower_amount, higher_amount):
+    sleep(3)
+    context.app.main_page.filter_by_price(lower_amount, higher_amount)
+    sleep(3)
+
 @then('Verify the price in all cards is inside the range')
-def verify_price_inside_range(context):
-    context.app.main_page.verify_price_inside_range()
+def verify_price_range(context):
+    context.app.main_page.verify_price_range(1200000, 2000000)
     sleep(5)
+

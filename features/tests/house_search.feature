@@ -2,7 +2,7 @@ Feature: User can filter deals by specific Unit price range
 
   Scenario: User can filter the Secondary deals by Unit price range
     Given Open main page and Login
-    Then Input shilpagt1808@gmail.com and password to Login to the page
+    Then Input shilpagt1808@gmail.com and Myra20!9 to Login to the page
     When Open “Secondary” option at the left side menu
     Then Verify right page opens
     Then Click on "Filters" at the top of the page
